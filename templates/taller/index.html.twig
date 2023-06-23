@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Taller index{% endblock %}
+
+{% block body %}
+    <h1>Taller index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Created</th>
+                <th>Alert</th>
+                <th>Start</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for taller in tallers %}
+            <tr>
+                <td>{{ taller.id }}</td>
+                <td>{{ taller.name }}</td>
+                <td>{{ taller.created ? taller.created|date('H:i:s') : '' }}</td>
+                <td>{{ taller.alert ? 'Yes' : 'No' }}</td>
+                <td>{{ taller.start ? taller.start|date('H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_taller_show', {'id': taller.id}) }}">show</a>
+                    <a href="{{ path('app_taller_edit', {'id': taller.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_taller_new') }}">Create new</a>
+{% endblock %}

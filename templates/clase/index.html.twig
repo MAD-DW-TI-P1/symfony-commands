@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clase index{% endblock %}
+
+{% block body %}
+    <h1>Clase index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Alert</th>
+                <th>Created</th>
+                <th>Start</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for clase in clases %}
+            <tr>
+                <td>{{ clase.id }}</td>
+                <td>{{ clase.name }}</td>
+                <td>{{ clase.alert ? 'Yes' : 'No' }}</td>
+                <td>{{ clase.created ? clase.created|date('Y-m-d') : '' }}</td>
+                <td>{{ clase.start ? clase.start|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_clase_show', {'id': clase.id}) }}">show</a>
+                    <a href="{{ path('app_clase_edit', {'id': clase.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_clase_new') }}">Create new</a>
+{% endblock %}

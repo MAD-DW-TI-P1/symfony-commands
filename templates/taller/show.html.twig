@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Taller{% endblock %}
+
+{% block body %}
+    <h1>Taller</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ taller.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ taller.name }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ taller.created ? taller.created|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Alert</th>
+                <td>{{ taller.alert ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Start</th>
+                <td>{{ taller.start ? taller.start|date('H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_taller_index') }}">back to list</a>
+
+    <a href="{{ path('app_taller_edit', {'id': taller.id}) }}">edit</a>
+
+    {{ include('taller/_delete_form.html.twig') }}
+{% endblock %}
